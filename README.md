@@ -21,3 +21,6 @@ pip install fastapi[all]
 Iniciar servidor:
 uvicorn main:app --reload (donde main es el nombre del archivo python que se va a utilizar)
 Ingresar URL obtenida por ejemplo en un explorador para ver los resultados.
+
+url + /docs = Se ingresa a Swagger UI
+url + /redoc = Se ingresa a documentación generada de la API
