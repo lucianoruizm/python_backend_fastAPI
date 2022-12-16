@@ -1,3 +1,6 @@
+import os
+from dotenv import load_dotenv
+
 from fastapi import FastAPI, Depends, HTTPException, status
 from pydantic import BaseModel
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
@@ -7,7 +10,9 @@ from datetime import datetime, timedelta
 
 ALGORITHM = "HS256"
 ACCESS_TOKEN_DURATION = 1 #Esto hará que el token tenga una duración de 1 min
-SECRET = "064656cebb63c834a6abd79cbbd6411df6b4ce8d66a7f6bb80906d1a521ec5f1"
+
+load_dotenv()
+SECRET = os.getenv('SECRET')
 
 app = FastAPI()
 
