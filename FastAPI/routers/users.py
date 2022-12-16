@@ -46,7 +46,7 @@ async def user(id: int):
 @router.post("/user/", status_code=201)
 async def user(user: User):
     if type(search_user(user.id)) == User:
-       raise HTTPException(status_code=204, detail="El usuario ya existe") #Debe responder con error 204 y detail
+       raise HTTPException(status_code=404, detail="El usuario ya existe") #Debe responder con error 204 y detail
     
     users_list.append(user)
     return user

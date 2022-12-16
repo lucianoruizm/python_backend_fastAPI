@@ -24,3 +24,11 @@ Ingresar URL obtenida por ejemplo en un explorador para ver los resultados.
 
 url + /docs = Se ingresa a Swagger UI
 url + /redoc = Se ingresa a documentación generada de la API
+
+jwt tokens:
+https://jwt.io/
+instalación: pip install "python-jose[cryptography]"
+Librería del algoritmo de encriptación bcrypt: 
+  pip install "passlib[bcrypt]"
+
+bcrypt generator: https://bcrypt-generator.com/
