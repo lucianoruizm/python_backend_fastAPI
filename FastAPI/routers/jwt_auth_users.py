@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import jwt, JWTError
@@ -14,7 +14,7 @@ ACCESS_TOKEN_DURATION = 1 #Esto hará que el token tenga una duración de 1 min
 load_dotenv()
 SECRET = os.getenv('SECRET')
 
-app = FastAPI()
+router = APIRouter()
 
 oauth2 = OAuth2PasswordBearer(tokenUrl="login")
 
@@ -81,7 +81,7 @@ async def current_user(user: User = Depends(auth_user)):
 
     return user
 
-@app.post("/login")
+@router.post("/login")
 async def login(form: OAuth2PasswordRequestForm = Depends()):
     user_db = users_db.get(form.username)
     if not user_db:
@@ -102,6 +102,6 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
 
     return {"access_token": jwt.encode(access_token, SECRET, algorithm=ALGORITHM), "token_type": "bearer"}
 
-@app.get("/users/me")
+@router.get("/users/me")
 async def me(user: User = Depends(current_user)): #esta operación depende de que el user este autenticado, según la función pasada
     return user
