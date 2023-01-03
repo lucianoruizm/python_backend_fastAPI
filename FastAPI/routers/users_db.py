@@ -1,37 +1,48 @@
-from fastapi import APIRouter, HTTPException
+# USERS DB API
+
+from fastapi import APIRouter, HTTPException, status
 from db.models.user import User
 from db.client import db_client
 
-router = APIRouter(tags=["users"])
+router = APIRouter(prefix="/userdb",
+                   tags=["userdb"],
+                   responses={status.HTTP_404_NOT_FOUND: {"message": "Not found"}})
 
 users_list = []
 
-@router.get("/usersdb")
+@router.get("/")
 async def users():
     return users_list
 
 #Path
-@router.get("/userdb/{id}") #parametro ingresado id
+@router.get("/{id}") #parametro ingresado id
 async def user(id: int):
     return search_user(id)
 
 #Query
-@router.get("/userdb/") #query ingresado id
+@router.get("/") #query ingresado id
 async def user(id: int):
     return search_user(id)
 
 #POST crear user
-@router.post("/userdb/", status_code=201)
+@router.post("/", response_model=User, status_code=status.HTTP_201_CREATED)
 async def user(user: User):
     # if type(search_user(user.id)) == User:
     #    raise HTTPException(status_code=404, detail="El usuario ya existe") #Debe responder con error 204 y detail
 
-    db_client.local.users.insert_one(user)
+    user_dict = dict(user)
+    del user_dict["id"] # Se elimina porque Mongodb por defecto genera un id, creado como _id
+
+    id = db_client.local.users.insert_one(user_dict).inserted_id
+
+    new_user = db_client.local.users.find_one({"_id":id})
+
+    
 
     return user
 
 #PUT update user
-@router.put("/userdb/")
+@router.put("/")
 async def user(user: User):
 
     found = False
@@ -47,7 +58,7 @@ async def user(user: User):
     return user
 
 #DELETE
-@router.delete("/userdb/{id}")
+@router.delete("/{id}")
 async def user(id: int):
 
     found = False

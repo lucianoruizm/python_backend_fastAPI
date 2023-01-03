@@ -43,7 +43,7 @@ async def user(id: int):
     return search_user(id)
 
 #POST crear user
-@router.post("/user/", status_code=201)
+@router.post("/user/", response_model=User, status_code=201)
 async def user(user: User):
     if type(search_user(user.id)) == User:
        raise HTTPException(status_code=404, detail="El usuario ya existe") #Debe responder con error 204 y detail
@@ -77,6 +77,7 @@ async def user(id: int):
         if saved_user.id == id:
             del users_list[index]
             found = True
+            return "Usuario eliminado"
 
     if not found:
         return {"error":"No se ha eliminado el usuario"}

@@ -36,7 +36,7 @@ users_db = {
         "full_name": "Jill Valentine",
         "email": "jillv@stars.com",
         "disabled": False,        #Al estar activo tiene la autorización de acceder a los datos del usuario
-        "password": "$2a$12$E3WG7GMS3.QsF9Ja1vmL8e7nLy8v7S6ChahfCF2FuvwVqOh1Jbe8q" #Generado con bcrypt
+        "password": "$2a$12$RtVt3S0Il5IJ2bXUfCZzcOP7Tc/VOhNHRcgIagdJncw65i8PY01PK" #Generado con bcrypt
     },
     "chrisredfield": {
         "username": "chrisredfield",
