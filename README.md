@@ -34,6 +34,9 @@ Librería del algoritmo de encriptación bcrypt:
 bcrypt generator: https://bcrypt-generator.com/
 
 mongoDB:
-  https://www.mongodb.com/docs/manual/administration/install-community/
-  Librería pymongo:
-        pip install pymongo
+  Descarga versión community: https://www.mongodb.com/try/download
+  Instalación:https://www.mongodb.com/docs/manual/tutorial
+              https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
+  Módulo conexión MongoDB: pip install pymongo
+  Ejecución: {ejecutable de mongod.exe} --dbpath "/path/a/la/base/de/datos/"
+  Conexión: mongodb://localhost
