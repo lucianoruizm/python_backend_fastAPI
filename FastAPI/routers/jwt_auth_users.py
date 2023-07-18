@@ -43,7 +43,7 @@ users_db = {
         "full_name": "Chris Redfield",
         "email": "chrisred@stars.com",
         "disabled": True,            #Al estar inactivo no tiene la autorización de acceder a los datos del usuario
-        "password": " $2a$12$7f5ZszJDYfg/EPD0NDYY7eAPg01AOYlbkodOsbIOnZooWXqVLO/pO" #Generado con bcrypt
+        "password": "$2a$12$7f5ZszJDYfg/EPD0NDYY7eAPg01AOYlbkodOsbIOnZooWXqVLO/pO" #Generado con bcrypt
     }
 }
 
